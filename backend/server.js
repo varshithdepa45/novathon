@@ -26,7 +26,11 @@ const __dirname = path.dirname(__filename);
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"], // frontend in dev
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://192.168.0.104:5173",
+    ], // frontend in dev
     credentials: true,
   })
 );

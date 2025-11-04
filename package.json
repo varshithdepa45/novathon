@@ -1,4 +1,10 @@
 {
+  "name": "solarbridge",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "install-all": "npm --prefix backend install && npm --prefix frontend install"
+  },
   "devDependencies": {
     "concurrently": "^9.2.1"
   }

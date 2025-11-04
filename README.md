@@ -1,44 +1,65 @@
 # SolarConnect - Solar Energy Solutions Platform
 
-## 🚀 Quick Access Links
+## 🌟 Welcome to SolarConnect!
 
-### � On Your Computer
+### 🚀 Access the Website
 
-**[Click here to open SolarConnect](http://localhost:5173)**
+**[Click here to visit SolarConnect](https://solarconnect-45.firebaseapp.com)**
 
-### 📱 On Other Devices
+Experience the future of solar energy - no setup required!
 
-1. Get the server running (instructions below)
-2. Use this address but replace `YOUR-IP` with your computer's IP:
-   ```
-   http://YOUR-IP:5173
-   ```
+## ✨ What We Offer
 
-## 🔧 Setup Instructions (Required First Time)
+### 💡 Solar Solutions
 
-> 1. Navigate to frontend folder: `cd frontend`
-> 2. Start server with host flag: `npm run dev -- --host`
-> 3. Find your IP address:
->    - On Mac/Linux: Run `ifconfig | grep "inet " | grep -v 127.0.0.1`
->    - On Windows: Run `ipconfig` and look for "IPv4 Address"
-> 4. Share the URL `http://{your-ip-address}:5173` with others on your network
+- Purchase solar panels with pay-per-watt pricing
+- Rent your terrace space for solar installations
+- Reduce electricity bills by 20%
+- Get 24/7 power supply
 
-## Project Overview
+### 🌍 Why Choose Us
 
-SolarConnect is a full-stack web application that connects users with solar energy solutions. The platform offers two primary business models:
+1. Zero setup cost options
+2. Professional site assessment
+3. Expert installation
+4. Full maintenance support
+5. Environmental sustainability
 
-1. Direct solar panel purchase with pay-per-watt pricing
-2. Terrace space rental for solar installations
+## 📞 Contact Us
 
-## Tech Stack
+### 📱 Phone
+- +91-9059845457
+- +91-7842807389
 
-### Frontend
+### 📧 Email
+- solarconnect45@gmail.com
+- solarconnect18@gmail.com
 
-- **Framework**: React.js with Vite
-- **Styling**: Custom CSS
-- **Icons**: Font Awesome
-- **Form Handling**: Native JavaScript
-- **Local Development Port**: 5173 or 5174
+## 🎯 Key Benefits
+
+1. **Save Money**
+   - 20% reduction in electricity bills
+   - Flexible payment options
+   - Government subsidies available
+
+2. **Hassle-Free Process**
+   - Free site assessment
+   - Professional installation
+   - Regular maintenance
+   - 24/7 customer support
+
+3. **Environmental Impact**
+   - Reduce carbon footprint
+   - Clean, renewable energy
+   - Sustainable future
+
+4. **Flexible Options**
+   - Buy solar panels
+   - Rent your space
+   - Customized solutions
+   - Pay per usage
+
+Visit [SolarConnect](https://solarconnect-45.firebaseapp.com) today and join the solar revolution!
 
 ### Backend
 

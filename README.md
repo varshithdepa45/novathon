@@ -4,9 +4,21 @@
 
 ### 🚀 Access the Website
 
-**[Click here to visit SolarConnect](https://localhost:5173)** (Temporary development URL)
+#### 💻 On Your Computer
 
-> **Note:** The website is currently in development mode. Contact our team for a demo:
+**[Click here to visit SolarConnect](http://localhost:5173)** (Local development URL)
+
+#### 📱 On Other Devices
+
+**[Click here to access from other devices](http://192.168.0.104:5173)** (Network access URL)
+
+> **Note:** To access the website:
+>
+> 1. Make sure the development server is running (`npm run dev --host` in frontend folder)
+> 2. Use http:// (not https://) in the URLs
+> 3. For other devices, you must be on the same network
+>
+> Need help? Contact our team:
 >
 > - 📱 Phone: +91-9059845457 or +91-7842807389
 > - 📧 Email: solarconnect45@gmail.com

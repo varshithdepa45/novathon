@@ -4,9 +4,14 @@
 
 ### 🚀 Access the Website
 
-**[Click here to visit SolarConnect](https://solarconnect-45.firebaseapp.com)**
+**[Click here to visit SolarConnect](https://localhost:5173)** (Temporary development URL)
 
-Experience the future of solar energy - no setup required!
+> **Note:** The website is currently in development mode. Contact our team for a demo:
+>
+> - 📱 Phone: +91-9059845457 or +91-7842807389
+> - 📧 Email: solarconnect45@gmail.com
+
+Experience the future of solar energy!
 
 ## ✨ What We Offer
 
@@ -28,27 +33,32 @@ Experience the future of solar energy - no setup required!
 ## 📞 Contact Us
 
 ### 📱 Phone
+
 - +91-9059845457
 - +91-7842807389
 
 ### 📧 Email
+
 - solarconnect45@gmail.com
 - solarconnect18@gmail.com
 
 ## 🎯 Key Benefits
 
 1. **Save Money**
+
    - 20% reduction in electricity bills
    - Flexible payment options
    - Government subsidies available
 
 2. **Hassle-Free Process**
+
    - Free site assessment
    - Professional installation
    - Regular maintenance
    - 24/7 customer support
 
 3. **Environmental Impact**
+
    - Reduce carbon footprint
    - Clean, renewable energy
    - Sustainable future

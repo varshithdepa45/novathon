@@ -1,13 +1,513 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <title>SolarConnect - Your Solar Energy Partner</title>
+    <link rel="stylesheet" href="/src/solar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-content">
+            <div class="logo">
+              <i class="fas fa-solar-panel"></i>
+              <span>SolarConnect</span>
+            </div>
+            <ul class="nav-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#benefits">Benefits</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cta-btn" id="getQuoteBtn">Get Free Quote</button>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Power Your Future with <span class="highlight">Solar Energy</span>
+          </h1>
+          <p class="hero-subtitle">
+            Save up to 90% on electricity bills. Connect with trusted solar
+            panel providers through our expert mediation service.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" id="heroQuoteBtn">
+              Get Started Today
+            </button>
+            <button class="btn btn-secondary" id="learnMoreBtn">
+              Learn More
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h3>5000+</h3>
+              <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+              <h3>10MW+</h3>
+              <p>Solar Installed</p>
+            </div>
+            <div class="stat-item">
+              <h3>₹50Cr+</h3>
+              <p>Savings Generated</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose SolarConnect?</h2>
+          <p>
+            We bridge the gap between you and the best solar panel companies
+          </p>
+        </div>
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Trusted Mediation</h3>
+            <p>
+              We connect you with verified, top-rated solar panel companies that
+              match your specific needs and budget.
+            </p>
+          </div>
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3>Custom Solutions</h3>
+            <p>
+              Get personalized solar solutions based on your power consumption,
+              roof space, and energy goals.
+            </p>
+          </div>
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h3>Best Prices</h3>
+            <p>
+              Compare quotes from multiple vendors and get the most competitive
+              pricing for your solar installation.
+            </p>
+          </div>
+          <div class="about-card">
+            <div class="card-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3>End-to-End Support</h3>
+            <p>
+              From consultation to installation and beyond, we guide you through
+              every step of your solar journey.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Services</h2>
+          <p>Complete solar solutions for every need</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <img
+              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&h=300&fit=crop"
+              alt="Residential Solar"
+            />
+            <div class="service-content">
+              <h3>Residential Solar</h3>
+              <p>Perfect solar solutions for homes and apartments</p>
+              <ul>
+                <li>Rooftop solar panels</li>
+                <li>Grid-connected systems</li>
+                <li>Battery storage options</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-card">
+            <img
+              src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=500&h=300&fit=crop"
+              alt="Commercial Solar"
+            />
+            <div class="service-content">
+              <h3>Commercial Solar</h3>
+              <p>Large-scale solutions for businesses</p>
+              <ul>
+                <li>Industrial installations</li>
+                <li>Corporate buildings</li>
+                <li>Warehouses & factories</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-card">
+            <img
+              src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=500&h=300&fit=crop"
+              alt="Consultation"
+            />
+            <div class="service-content">
+              <h3>Expert Consultation</h3>
+              <p>Professional guidance for your solar journey</p>
+              <ul>
+                <li>Site assessment</li>
+                <li>Energy audit</li>
+                <li>ROI calculation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+      <div class="container">
+        <div class="section-header">
+          <h2>Benefits of Going Solar</h2>
+          <p>Make the smart choice for your wallet and the planet</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <i class="fas fa-piggy-bank"></i>
+            <h3>Reduce Bills by 90%</h3>
+            <p>Dramatically cut your monthly electricity costs</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-leaf"></i>
+            <h3>Eco-Friendly</h3>
+            <p>Reduce carbon footprint and help the environment</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-chart-line"></i>
+            <h3>Increase Property Value</h3>
+            <p>Boost your property's market value significantly</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Energy Independence</h3>
+            <p>Protection from rising electricity costs</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-coins"></i>
+            <h3>Government Subsidies</h3>
+            <p>Avail subsidies and tax benefits</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-tools"></i>
+            <h3>Low Maintenance</h3>
+            <p>Minimal upkeep with 25+ year lifespan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get in Touch</h2>
+          <p>We're here to help you switch to solar energy</p>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="info-card">
+              <i class="fas fa-phone-alt"></i>
+              <h3>Call Us</h3>
+              <p>+91-9876543210</p>
+              <p>+91-9876543211</p>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-envelope"></i>
+              <h3>Email Us</h3>
+              <p>info@solarconnect.com</p>
+              <p>support@solarconnect.com</p>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-clock"></i>
+              <h3>Working Hours</h3>
+              <p>Mon - Sat: 9 AM - 7 PM</p>
+              <p>Sunday: Closed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="logo">
+              <i class="fas fa-solar-panel"></i>
+              <span>SolarConnect</span>
+            </div>
+            <p>
+              Your trusted partner in solar energy solutions. Connecting
+              customers with the best solar panel providers.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#benefits">Benefits</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#">Residential Solar</a></li>
+              <li><a href="#">Commercial Solar</a></li>
+              <li><a href="#">Consultation</a></li>
+              <li><a href="#">Maintenance</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 SolarConnect. All rights reserved. |
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Quote Form Modal -->
+    <div class="modal" id="quoteModal">
+      <div class="modal-overlay" id="modalOverlay"></div>
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-header">
+          <h2>Get Your Free Solar Quote</h2>
+          <p>
+            Fill in your details and we'll connect you with the best solar
+            providers
+          </p>
+        </div>
+        <form class="quote-form" id="quoteForm">
+          <!-- Personal Information -->
+          <div class="form-section">
+            <h3><i class="fas fa-user"></i> Personal Information</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="contact">Contact Number *</label>
+                <input
+                  type="tel"
+                  id="contact"
+                  name="contact"
+                  pattern="[0-9]{10}"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Information -->
+          <div class="form-section">
+            <h3><i class="fas fa-map-marker-alt"></i> Address Details</h3>
+            <div class="form-group">
+              <label for="address">Full Address *</label>
+              <textarea
+                id="address"
+                name="address"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required />
+              </div>
+              <div class="form-group">
+                <label for="pincode">Pin Code *</label>
+                <input
+                  type="text"
+                  id="pincode"
+                  name="pincode"
+                  pattern="[0-9]{6}"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Power Consumption -->
+          <div class="form-section">
+            <h3><i class="fas fa-bolt"></i> Power Consumption Details</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="monthlyConsumption"
+                  >Monthly Power Consumption (kWh) *</label
+                >
+                <input
+                  type="number"
+                  id="monthlyConsumption"
+                  name="monthlyConsumption"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="monthlyBill">Average Monthly Bill (₹) *</label>
+                <input
+                  type="number"
+                  id="monthlyBill"
+                  name="monthlyBill"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="peakConsumption">Peak Load (kW) *</label>
+                <input
+                  type="number"
+                  id="peakConsumption"
+                  name="peakConsumption"
+                  step="0.1"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lowestConsumption">Minimum Load (kW) *</label>
+                <input
+                  type="number"
+                  id="lowestConsumption"
+                  name="lowestConsumption"
+                  step="0.1"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Grid System Knowledge -->
+          <div class="form-section">
+            <h3><i class="fas fa-network-wired"></i> Grid System Knowledge</h3>
+            <div class="form-group">
+              <label>Do you know about grid-connected solar systems? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="gridKnowledge"
+                    value="yes"
+                    required
+                  />
+                  <span>Yes, I know about it</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="gridKnowledge" value="no" />
+                  <span>No, I don't know</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="gridKnowledge" value="maybe" />
+                  <span>Not sure / Need information</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Installation Space -->
+          <div class="form-section">
+            <h3><i class="fas fa-ruler-combined"></i> Installation Space</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="terraceArea"
+                  >Available Terrace Area (sq ft) *</label
+                >
+                <input
+                  type="number"
+                  id="terraceArea"
+                  name="terraceArea"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Information -->
+          <div class="form-section">
+            <h3><i class="fas fa-comment"></i> Additional Information</h3>
+            <div class="form-group">
+              <label for="additionalInfo"
+                >Any specific requirements or questions?</label
+              >
+              <textarea
+                id="additionalInfo"
+                name="additionalInfo"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">
+            <i class="fas fa-paper-plane"></i> Submit Assessment
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+      <div class="success-content">
+        <i class="fas fa-check-circle"></i>
+        <h2>Thank You!</h2>
+        <p id="successMessage">
+          Your assessment request has been submitted successfully. Our team will
+          contact you within 24 hours.
+        </p>
+        <button class="btn btn-primary" id="successClose">Close</button>
+      </div>
+    </div>
+
+    <script src="/src/solar.js"></script>
   </body>
 </html>

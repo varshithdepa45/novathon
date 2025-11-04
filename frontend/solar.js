@@ -64,43 +64,73 @@ quoteForm.addEventListener("submit", async (e) => {
 
   // Get form data
   const formData = new FormData(quoteForm);
-  const data = {};
-
-  formData.forEach((value, key) => {
-    data[key] = value;
-  });
-
-  // Add timestamp
-  data.submittedAt = new Date().toISOString();
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    contact: formData.get("contactNo"),
+    address: formData.get("address"),
+    city: formData.get("city"),
+    pincode: formData.get("pincode"),
+    monthlyBill: parseFloat(formData.get("monthlyBill")),
+    terraceArea: parseFloat(formData.get("terraceArea")),
+    gridKnowledge: formData.get("gridKnowledge"),
+    monthlyConsumption: parseFloat(formData.get("monthlyConsumption") || "0"),
+    peakConsumption: parseFloat(formData.get("peakConsumption") || "0"),
+    lowestConsumption: parseFloat(formData.get("lowestConsumption") || "0"),
+  };
 
   try {
+    const submitButton = quoteForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+
     // Send data to backend
-    const response = await fetch("http://localhost:3000/api/enquiries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "http://localhost:3000/api/submit-assessment",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    const result = await response.json();
 
     if (response.ok) {
       // Close quote modal
       closeModal();
 
-      // Show success modal
+      // Show success modal with assessment ID
+      const successMessage = document.getElementById("successMessage");
+      if (successMessage) {
+        successMessage.textContent = `Thank you! Your assessment request has been submitted successfully. Your reference ID is: ${result.id}`;
+      }
       successModal.classList.add("active");
 
       // Reset form
       quoteForm.reset();
       gridAvailabilityGroup.style.display = "none";
+
+      // Track successful submission
+      console.log("Assessment submitted successfully:", result.id);
     } else {
-      throw new Error("Failed to submit form");
+      throw new Error(result.error || "Failed to submit form");
     }
   } catch (error) {
     console.error("Error:", error);
-    alert(
-      "There was an error submitting your enquiry. Please try again or contact us directly."
-    );
+    const errorMessage =
+      error.message === "Failed to fetch"
+        ? "Unable to connect to the server. Please check your internet connection and try again."
+        : "There was an error submitting your assessment. Please try again or contact us directly.";
+
+    alert(errorMessage);
+  } finally {
+    // Re-enable submit button
+    const submitButton = quoteForm.querySelector('button[type="submit"]');
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Assessment";
   }
 });
 

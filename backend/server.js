@@ -1,75 +1,80 @@
 // server.js
-
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import helmet from "helmet";
 import morgan from "morgan";
 import compression from "compression";
+import path from "path";
+import { fileURLToPath } from "url";
+import admin from "firebase-admin";
 
 dotenv.config(); // Load environment variables
 
 const app = express();
 
 // ==========================
+// 📂 Directory setup
+// ==========================
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ==========================
 // 🔧 Middleware
 // ==========================
 app.use(express.json());
-app.use(cors({
-  origin: "http://localhost:5173", // allow frontend (Vite)
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:5174"], // frontend in dev
+    credentials: true,
+  })
+);
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(compression());
 
 // ==========================
-// 🧩 MongoDB Connection
+// ✅ Step 2 — Verify ENV Variables are Loaded
 // ==========================
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected successfully"))
-  .catch((err) => {
-    console.error("❌ MongoDB connection error:", err.message);
-    process.exit(1); // stop server if DB fails
-  });
+console.log("📧 Checking environment variables...");
+console.log("   EMAIL_USER:", process.env.EMAIL_USER || "❌ Not Found");
+console.log(
+  "   EMAIL_PASS:",
+  process.env.EMAIL_PASS ? "✅ Loaded" : "❌ Missing"
+);
 
 // ==========================
-// 📦 Mongoose Schema & Model
+// 🔥 Firebase Admin Initialization
 // ==========================
-const assessmentSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  contact: { type: String },
-  email: { type: String, required: true },
-  address: { type: String },
-  city: { type: String },
-  pincode: { type: String },
-  peakConsumption: { type: Number },
-  lowestConsumption: { type: Number },
-  monthlyConsumption: { type: Number },
-  monthlyBill: { type: Number },
-  terraceArea: { type: Number },
-  gridKnowledge: { type: String },
-  submittedAt: { type: Date, default: Date.now },
+const serviceAccountPath = path.join(
+  __dirname,
+  "solar-87382-firebase-adminsdk-fbsvc-567cf894a8.json"
+);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccountPath),
 });
 
-const Assessment = mongoose.model("Assessment", assessmentSchema);
+const db = admin.firestore();
 
 // ==========================
 // 📧 Nodemailer Configuration
 // ==========================
+console.log("📨 Initializing email transporter...");
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // true for port 465
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.EMAIL_USER?.trim(),
+    pass: process.env.EMAIL_PASS?.trim(),
   },
+  authMethod: "LOGIN",
 });
 
-// verify transporter setup
-transporter.verify((error, success) => {
+// ✅ Verify transporter setup
+transporter.verify((error) => {
   if (error) {
     console.error("❌ Email transporter error:", error);
   } else {
@@ -78,18 +83,15 @@ transporter.verify((error, success) => {
 });
 
 // ==========================
-// 🚀 Routes
+// 🚀 API Routes
 // ==========================
-
-// Test Route
-app.get("/", (req, res) => {
-  res.send("☀️ SolarBridge Backend is running and connected to MongoDB!");
-});
-
-// Fetch all assessments
 app.get("/api/assessments", async (req, res) => {
   try {
-    const forms = await Assessment.find().sort({ submittedAt: -1 });
+    const snapshot = await db
+      .collection("assessments")
+      .orderBy("submittedAt", "desc")
+      .get();
+    const forms = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     res.status(200).json(forms);
   } catch (error) {
     console.error("❌ Error fetching forms:", error);
@@ -97,45 +99,55 @@ app.get("/api/assessments", async (req, res) => {
   }
 });
 
-// Submit assessment
 app.post("/api/submit-assessment", async (req, res) => {
   try {
-    const form = new Assessment(req.body);
-    await form.save();
+    const formData = {
+      ...req.body,
+      submittedAt: admin.firestore.Timestamp.now(),
+    };
 
-    console.log("✅ New form submission:", form);
+    const docRef = await db.collection("assessments").add(formData);
 
-    // Email content
     const mailOptions = {
       from: `"SolarBridge" <${process.env.EMAIL_USER}>`,
-      to: process.env.RECEIVER_EMAIL,
-      subject: `🌞 New Solar Assessment from ${form.name}`,
+      to: process.env.RECEIVER_EMAIL || process.env.EMAIL_USER, // fallback to self
+      subject: `🌞 New Solar Assessment from ${formData.name}`,
       html: `
         <h2>New Solar Assessment</h2>
-        <p><strong>Name:</strong> ${form.name}</p>
-        <p><strong>Email:</strong> ${form.email}</p>
-        <p><strong>Contact:</strong> ${form.contact}</p>
-        <p><strong>Address:</strong> ${form.address}, ${form.city}, ${form.pincode}</p>
-        <p><strong>Monthly Bill:</strong> ₹${form.monthlyBill}</p>
-        <p><strong>Terrace Area:</strong> ${form.terraceArea} sq.ft</p>
-        <p><strong>Grid Knowledge:</strong> ${form.gridKnowledge}</p>
-        <p><strong>Submitted At:</strong> ${form.submittedAt}</p>
+        <p><strong>Name:</strong> ${formData.name}</p>
+        <p><strong>Email:</strong> ${formData.email}</p>
+        <p><strong>Contact:</strong> ${formData.contact}</p>
+        <p><strong>Address:</strong> ${formData.address}, ${formData.city}, ${formData.pincode}</p>
+        <p><strong>Monthly Bill:</strong> ₹${formData.monthlyBill}</p>
+        <p><strong>Terrace Area:</strong> ${formData.terraceArea} sq.ft</p>
+        <p><strong>Grid Knowledge:</strong> ${formData.gridKnowledge}</p>
       `,
     };
 
-    // Send email
     await transporter.sendMail(mailOptions);
-    console.log("📧 Email notification sent successfully!");
-
-    res.status(201).json({ message: "Form submitted and email sent successfully" });
+    console.log("📧 Email notification sent!");
+    res
+      .status(201)
+      .json({ message: "Form submitted successfully", id: docRef.id });
   } catch (error) {
-    console.error("❌ Error during form submission:", error);
+    console.error("❌ Error submitting form:", error);
     res.status(500).json({ error: "Failed to submit form" });
   }
 });
 
 // ==========================
-// 🖥️ Server Start
+// 🌐 Serve Frontend (Production)
+// ==========================
+const frontendPath = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendPath));
+
+// Serve React app for all non-API routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+// ==========================
+// 🖥️ Start Server
 // ==========================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

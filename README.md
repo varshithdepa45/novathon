@@ -2,21 +2,35 @@
 
 ## 🌟 Welcome to SolarConnect!
 
-### 🚀 Access the Website
+### 🚀 How to Access the Website
 
-#### 💻 On Your Computer
+#### 💻 Steps to Run Locally
 
-**[Click here to visit SolarConnect](http://localhost:5173)** (Local development URL)
+1. Start the backend server:
 
-#### 📱 On Other Devices
+   ```bash
+   cd backend
+   node server.js
+   ```
 
-**[Click here to access from other devices](http://192.168.0.104:5173)** (Network access URL)
+2. Start the frontend server:
 
-> **Note:** To access the website:
+   ```bash
+   cd frontend
+   npm run dev -- --host
+   ```
+
+3. Access the website:
+   - On your computer: Open `http://localhost:5173`
+   - On other devices: Look for the "Network:" URL in the terminal
+     (Example: `http://192.168.x.x:5173`)
+
+> **Important Notes:**
 >
-> 1. Make sure the development server is running (`npm run dev --host` in frontend folder)
-> 2. Use http:// (not https://) in the URLs
-> 3. For other devices, you must be on the same network
+> - Make sure both servers are running before accessing
+> - All devices must be on the same WiFi network
+> - Use `http://` not `https://` in the URLs
+> - Copy the exact Network URL shown in your terminal
 >
 > Need help? Contact our team:
 >
